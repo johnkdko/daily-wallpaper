@@ -1,0 +1,46 @@
+#!/bin/bash
+
+set_wallpaper ()
+{
+    PREFIX="/home/john/Pictures/wallpapers"
+    DATE="`date +%m-%d`"
+    if [ ! -f ${PREFIX}/${DATE} ]; then
+        # There is no picture associated with today's date
+        DATE="`date +%A`" # choose a picture based on the day of the week instead
+    fi
+
+    # monitor DisplayPort-0 (use xfconf-query -m -c xfce-desktop or Desktop background for wallpaper setting)
+    #LARGE_DISPLAY=/backdrop/screen0/monitorDisplayPort-0
+
+    # image-style: 0=none, 1=centred, 2=tiled, 3=stretched, 4=scaled, 5= zoomed
+    #                channel             property                                  set
+    #xfconf-query -c xfce4-desktop -p ${LARGE_DISPLAY}/workspace${1}/last-image  -s ${2}
+    ln -fs "${PREFIX}/${DATE}" "${PREFIX}/DisplayPort_picture_of_the_day"
+    ln -fs "${PREFIX}/${DATE}" "${PREFIX}/HDMI_picture_of_the_day"
+}
+
+set_wallpaper
+# xfconf-query -c xfce4-desktop -l | grep last-image
+#/backdrop/screen0/monitor0/last-image
+#/backdrop/screen0/monitor0/workspace0/last-image
+#/backdrop/screen0/monitor0/workspace1/last-image
+#/backdrop/screen0/monitor0/workspace2/last-image
+#/backdrop/screen0/monitor0/workspace3/last-image
+#/backdrop/screen0/monitor1/last-image
+#/backdrop/screen0/monitor2/last-image
+#/backdrop/screen0/monitorDisplayPort-0/workspace0/last-image
+#/backdrop/screen0/monitorDisplayPort-0/workspace1/last-image
+#/backdrop/screen0/monitorDisplayPort-0/workspace2/last-image
+#/backdrop/screen0/monitorDisplayPort-0/workspace3/last-image
+#/backdrop/screen0/monitorDVI-0/workspace0/last-image
+#/backdrop/screen0/monitorDVI-0/workspace1/last-image
+#/backdrop/screen0/monitorDVI-0/workspace2/last-image
+#/backdrop/screen0/monitorDVI-0/workspace3/last-image
+#/backdrop/screen0/monitorHDMI-0/workspace0/last-image
+#/backdrop/screen0/monitorHDMI-0/workspace1/last-image
+#/backdrop/screen0/monitorHDMI-0/workspace2/last-image
+#/backdrop/screen0/monitorHDMI-0/workspace3/last-image
+#
+#$ xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorHDMI-0/workspace0/last-image
+#/home/john/Downloads/AdorationOfTheMagi-Da Fabriano.jpg
+

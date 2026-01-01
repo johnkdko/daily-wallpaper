@@ -1,0 +1,20 @@
+#!/bin/bash
+# sets a picture of the day based on whether there is a file
+# with today's date, in "mm-dd" format, followed by "-DVI"
+# e.g.
+# /home/john/Pictures/wallpapers/08-15-DVI
+# Otherwise, choose the day of the week instead, e.g. Sunday-DVI
+
+set_DVI () 
+{
+    PREFIX="/home/john/Pictures/wallpapers"
+    DATE="`date +%m-%d`-DVI" # use only month-day
+
+    if [ ! -f ${PREFIX}/${DATE} ]; then
+        DATE="`date +%A`-DVI" # choose a picture based on the day of the week instead
+    fi
+
+    ln -fs "${PREFIX}/${DATE}" "${PREFIX}/DVI_picture_of_the_day"
+}
+
+set_DVI

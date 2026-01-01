@@ -1,0 +1,25 @@
+#!/bin/bash
+# use:
+# set_DVI 0 DVI_picture_of_the_day
+# to get a daily picture, via script set_DVI_picture_of_the_day run at midnight.
+
+set_DVI () 
+{
+    if [ -z ${2} ]; then
+        echo "Please specify 2 parameters: workspace and image";
+        return;
+    fi
+
+    if [[ ! ${2} =~ ^/ ]]; then
+        # the user didn't specify a full path; prefix it with the current dir
+        PREFIX=`pwd`
+        echo "Prefixing ${2} with ${PREFIX}/"
+    fi
+    DATE=`date +%m-%d`
+    VERTICAL_DISPLAY="/backdrop/screen0/monitorDVI-0"
+
+    xfconf-query -c xfce4-desktop -p ${VERTICAL_DISPLAY}/workspace${1}/image-style -s 4
+    xfconf-query -c xfce4-desktop -p ${VERTICAL_DISPLAY}/workspace${1}/last-image  -s ${PREFIX}/${2}
+}
+
+set_DVI ${1} ${2}

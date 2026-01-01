@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set_DVI () 
+{
+    PREFIX=`pwd`
+    DATE=`date +%m-%d` # choose a picture based on mm-dd
+
+    echo "checking for existence of file ${PREFIX}/${DATE}"
+    if [ ! -f "${PREFIX}/${DATE}" ]; then # if there is no file with that criteria
+        DATE=`date +%A` # choose a picture based on the day of the week instead
+        echo "It doesn't exist, chose a day of week instead: ${DATE}"
+    fi
+    ln -fs "${PREFIX}/${DATE}" "${PREFIX}/picture_of_the_day"
+}
+
+set_DVI

@@ -1,0 +1,32 @@
+#!/bin/bash
+
+set_wallpaper () 
+{
+    if [ -z ${2} ]; then
+        echo "Please specify 2 parameters: workspace and image";
+        return;
+    fi
+
+    if [[ ! ${2} =~ ^/ ]]; then
+        # the user didn't specify a full path; prefix it with the current dir
+        PREFIX=`pwd` # PREFIX="/home/john/Pictures/wallpapers"
+        echo "Prefixing ${2} with ${PREFIX}/"
+    fi
+
+    DATE=`date +%m-%d`
+
+    # monitor DisplayPort-0 (use xfconf-query -m -c xfce-desktop or Desktop background for wallpaper setting)
+    LARGE_DISPLAY=/backdrop/screen0/monitorDisplayPort-0
+    HDMI_DISPLAY=/backdrop/screen0/monitorHDMI-0
+
+    # image-style: 0=none, 1=centred, 2=tiled, 3=stretched, 4=scaled, 5= zoomed
+    #                channel             property                                  set
+    xfconf-query -c xfce4-desktop -p ${LARGE_DISPLAY}/workspace${1}/image-style -s  4
+    xfconf-query -c xfce4-desktop -p ${LARGE_DISPLAY}/workspace${1}/last-image  -s ${PREFIX}/${2} 
+
+    xfconf-query -c xfce4-desktop -p ${HDMI_DISPLAY}/workspace${1}/image-style -s  4
+    xfconf-query -c xfce4-desktop -p ${HDMI_DISPLAY}/workspace${1}/last-image  -s ${PREFIX}/${2} 
+}
+
+
+set_wallpaper ${1} ${2}
