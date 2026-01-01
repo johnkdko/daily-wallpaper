@@ -1,0 +1,4 @@
+# to stop screensaver from "blanking your screen". Check with an
+# internet search for your particular setup
+xset s off
+xset s noblank
