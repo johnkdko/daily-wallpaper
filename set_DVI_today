@@ -2,12 +2,12 @@
 # sets a picture of the day based on whether there is a file
 # with today's date, in "mm-dd" format, followed by "-DVI"
 # e.g.
-# /home/john/Pictures/wallpapers/08-15-DVI
+# /home/john/Pictures/daily-wallpaper/08-15-DVI
 # Otherwise, choose the day of the week instead, e.g. Sunday-DVI
 
 set_DVI () 
 {
-    PREFIX="/home/john/Pictures/wallpapers"
+    PREFIX="${HOME}/Pictures/wallpapers"
     DATE="`date +%m-%d`-DVI" # use only month-day
 
     if [ ! -f ${PREFIX}/${DATE} ]; then

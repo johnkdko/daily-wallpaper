@@ -9,7 +9,7 @@ set_wallpaper ()
 
     if [[ ! ${2} =~ ^/ ]]; then
         # the user didn't specify a full path; prefix it with the current dir
-        PREFIX=`pwd` # PREFIX="/home/john/Pictures/wallpapers"
+        PREFIX=`pwd` # PREFIX="/home/john/Pictures/daily-wallpaper"
         echo "Prefixing ${2} with ${PREFIX}/"
     fi
 

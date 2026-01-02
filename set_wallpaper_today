@@ -2,7 +2,7 @@
 
 set_wallpaper ()
 {
-    PREFIX="/home/john/Pictures/wallpapers"
+    PREFIX="${HOME}/Pictures/daily-wallpaper"
     DATE="`date +%m-%d`"
     if [ ! -f ${PREFIX}/${DATE} ]; then
         # There is no picture associated with today's date
@@ -42,5 +42,4 @@ set_wallpaper
 #/backdrop/screen0/monitorHDMI-0/workspace3/last-image
 #
 #$ xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitorHDMI-0/workspace0/last-image
-#/home/john/Downloads/AdorationOfTheMagi-Da Fabriano.jpg
 
